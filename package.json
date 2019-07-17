@@ -1,6 +1,6 @@
 {
   "name": "hikingBuddiesEvents",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Handles incoming events for our slack workspace",
   "main": "events.js",
   "repository": {
