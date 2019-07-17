@@ -27,14 +27,14 @@ var slack = {
         if(slack.verify(event)){
             response.statusCode = 200;
             try{event.body = JSON.parse(event.body);}catch(error){console.log(error); callback(null, response);}
-            if(event.body.event.type === "team_join"){
-                callback(null, response);
-                slack.onTeamJoin(event.body.event, slack.send);
-            } else if (event.body.type === "url_verification"){
+            if (event.body.type === "url_verification"){
                 response.body = JSON.stringify({challenge: event.body.challenge});
                 callback(null, response);
-            } else {console.log('unhandled event type: ' + JSON.stringify(event.body)); callback(null, response);}
-        } else {console.log('not slack?'); callback(null, response);}
+            } else if(event.body.event.type === "team_join"){
+                callback(null, response);
+                slack.onTeamJoin(event.body.event, slack.send);
+            } else {slack.send('unhandled event type: ' + JSON.stringify(event.body)); callback(null, response);}
+        } else {slack.send('request to event handler not slack'); callback(null, response);}
     },
     onTeamJoin: function(event, log){ // pass fuction on where to log (slack, cloudwatch, console, ect)
         slack.send('Welcome to hiking buddies slack '+event.user.real_name+'! (<@'+ event.user.id +
