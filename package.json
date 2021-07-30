@@ -1,6 +1,6 @@
 {
   "name": "hikingBuddiesEvents",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Handles incoming events for our slack workspace",
   "main": "events.js",
   "repository": {
@@ -13,6 +13,5 @@
     "url": "https://github.com/PaulBeaudet/hiking_buddies_events/issues"
   },
   "homepage": "https://github.com/PaulBeaudet/hiking_buddies_events#readme",
-  "private": true,
-  "dependencies": {}
+  "private": true
 }
